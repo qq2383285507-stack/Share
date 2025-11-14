@@ -74,7 +74,7 @@
 
 .feed-card-tag {
   padding: 0.25rem 0.75rem;
-  border-radius: 999px;
+  border-radius: 30px;
   background: #f1f5f9;
   font-size: 0.85rem;
   color: #0f172a;
@@ -98,7 +98,7 @@
   background: #2563eb;
   color: #fff;
   padding: 0.5rem 1rem;
-  border-radius: 999px;
+  border-radius: 30px;
   cursor: pointer;
 }
 
@@ -110,14 +110,14 @@
   align-items: center;
   gap: 1.5rem;
   padding: 1.25rem 1.75rem;
-  border-radius: 1.5rem;
+  border-radius: 10px;
   border: 1px solid #e2e8f0;
   background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 15px 45px rgba(15, 23, 42, 0.08);
   -webkit-backdrop-filter: blur(12px);
           backdrop-filter: blur(12px);
   margin-bottom: 2rem;
-  z-index: 99999;
+  z-index: 123;
 }
 
 .feed-nav-brand {
@@ -138,7 +138,7 @@
   background: #2563eb;
   color: #fff;
   padding: 0.25rem 0.75rem;
-  border-radius: 999px;
+  border-radius: 30px;
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -156,7 +156,7 @@
   color: #0f172a;
   font-weight: 500;
   padding: 0.35rem 0.85rem;
-  border-radius: 999px;
+  border-radius: 30px;
   display: inline-flex;
   transition: background 0.2s, color 0.2s;
 }
@@ -174,7 +174,7 @@
 .feed-nav-actions button {
   border: none;
   padding: 0.5rem 1.25rem;
-  border-radius: 999px;
+  border-radius: 30px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -194,7 +194,7 @@
   justify-content: space-between;
   gap: 2rem;
   padding: 2rem;
-  border-radius: 1.5rem;
+  border-radius: 10px;
   background: linear-gradient(135deg, #eef2ff, #fff);
   margin-bottom: 2rem;
   border: 1px solid #e2e8f0;
@@ -359,7 +359,7 @@
   background: #2563eb;
   color: #fff;
   padding: 0.5rem 1.25rem;
-  border-radius: 999px;
+  border-radius: 30px;
   cursor: pointer;
 }
 
@@ -379,12 +379,12 @@
 
 .feed-feature-list li {
   padding: 0.4rem 1rem;
-  border-radius: 999px;
+  border-radius: 30px;
   background: rgba(255, 255, 255, 0.12);
 }
 
 .feed-panels {
-  border-radius: 1.5rem;
+  border-radius: 10px;
   border: 1px solid #e2e8f0;
   padding: 1.5rem;
   background: #fff;
@@ -426,7 +426,7 @@
   max-height: 80vh;
   overflow-y: auto;
   background: #fff;
-  border-radius: 1.5rem;
+  border-radius: 10px;
   padding: 2rem;
   position: relative;
   box-shadow: 0 30px 70px rgba(15, 23, 42, 0.2);
@@ -442,7 +442,7 @@
 
 .feed-modal-content::-webkit-scrollbar-thumb {
   background: #cbd5f5;
-  border-radius: 999px;
+  border-radius: 30px;
 }
 
 .feed-modal-content::-webkit-scrollbar-thumb:hover {
@@ -540,7 +540,7 @@
   background: #eef2ff;
   color: #1d4ed8;
   padding: 0.3rem 0.9rem;
-  border-radius: 999px;
+  border-radius: 30px;
   font-size: 0.85rem;
 }
 
@@ -580,7 +580,7 @@
 .feed-modal-author-actions button {
   border: 1px solid #e2e8f0;
   background: #fff;
-  border-radius: 999px;
+  border-radius: 30px;
   padding: 0.4rem 1rem;
   cursor: pointer;
 }
@@ -602,7 +602,7 @@
 .feed-modal-action {
   width: 100%;
   border: none;
-  border-radius: 999px;
+  border-radius: 30px;
   padding: 0.75rem 1rem;
   background: #0f172a;
   color: #fff;
@@ -623,7 +623,7 @@
 
 .feed-media-viewer-content {
   background: #fff;
-  border-radius: 1.5rem;
+  border-radius: 10px;
   padding: 1.5rem;
   max-width: 720px;
   width: min(720px, 100%);
@@ -683,7 +683,7 @@
 }
 
 .feed-compose-actions button {
-  border-radius: 999px;
+  border-radius: 30px;
   border: 1px solid #e2e8f0;
   padding: 0.5rem 1.25rem;
   background: #fff;
@@ -726,7 +726,7 @@
 .comment-reply-form button {
   align-self: flex-end;
   border: none;
-  border-radius: 999px;
+  border-radius: 30px;
   padding: 0.5rem 1.25rem;
   background: #2563eb;
   color: #fff;

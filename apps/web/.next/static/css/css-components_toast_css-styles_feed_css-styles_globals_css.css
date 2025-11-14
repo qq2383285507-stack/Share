@@ -67,7 +67,7 @@
 
 .feed-card-tag {
   padding: 0.25rem 0.75rem;
-  border-radius: 999px;
+  border-radius: 30px;
   background: #f1f5f9;
   font-size: 0.85rem;
   color: #0f172a;
@@ -91,7 +91,7 @@
   background: #2563eb;
   color: #fff;
   padding: 0.5rem 1rem;
-  border-radius: 999px;
+  border-radius: 30px;
   cursor: pointer;
 }
 
@@ -103,7 +103,7 @@
   align-items: center;
   gap: 1.5rem;
   padding: 1.25rem 1.75rem;
-  border-radius: 1.5rem;
+  border-radius: 10px;
   border: 1px solid #e2e8f0;
   background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 15px 45px rgba(15, 23, 42, 0.08);
@@ -130,7 +130,7 @@
   background: #2563eb;
   color: #fff;
   padding: 0.25rem 0.75rem;
-  border-radius: 999px;
+  border-radius: 30px;
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -148,7 +148,7 @@
   color: #0f172a;
   font-weight: 500;
   padding: 0.35rem 0.85rem;
-  border-radius: 999px;
+  border-radius: 30px;
   display: inline-flex;
   transition: background 0.2s, color 0.2s;
 }
@@ -166,7 +166,7 @@
 .feed-nav-actions button {
   border: none;
   padding: 0.5rem 1.25rem;
-  border-radius: 999px;
+  border-radius: 30px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -186,7 +186,7 @@
   justify-content: space-between;
   gap: 2rem;
   padding: 2rem;
-  border-radius: 1.5rem;
+  border-radius: 10px;
   background: linear-gradient(135deg, #eef2ff, #fff);
   margin-bottom: 2rem;
   border: 1px solid #e2e8f0;
@@ -315,7 +315,7 @@
   background: #2563eb;
   color: #fff;
   padding: 0.5rem 1.25rem;
-  border-radius: 999px;
+  border-radius: 30px;
   cursor: pointer;
 }
 
@@ -335,12 +335,12 @@
 
 .feed-feature-list li {
   padding: 0.4rem 1rem;
-  border-radius: 999px;
+  border-radius: 30px;
   background: rgba(255, 255, 255, 0.12);
 }
 
 .feed-panels {
-  border-radius: 1.5rem;
+  border-radius: 10px;
   border: 1px solid #e2e8f0;
   padding: 1.5rem;
   background: #fff;
