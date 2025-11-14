@@ -179,12 +179,12 @@ export default function FeedPage() {
 
       <section className="feed-insights">
         {INSIGHTS.map((insight) => (
-          <article key={insight.title}>
-            <div>
+          <article key={insight.title} className="feed-insight-card">
+            <div className="feed-insight-body">
               <p className="insight-title">{insight.title}</p>
               <p className="insight-description">{insight.description}</p>
             </div>
-            <div className="insight-metric">
+            <div className="feed-insight-metric">
               <strong>{insight.value}</strong>
               <span>{insight.trend}</span>
             </div>
@@ -246,7 +246,7 @@ export default function FeedPage() {
               <textarea
                 value={composerBody}
                 onChange={(event) => setComposerBody(event.target.value)}
-                rows={5}
+                rows={15}
                 required
                 placeholder="写下分享的灵感、故事或教程"
               />
