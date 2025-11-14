@@ -1,15 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { FeedTabs } from "../../components/FeedTabs";
 import { FeedList } from "../../components/FeedList";
 import { FeedSort, useFeed } from "@dome/hooks/useFeed";
 import "../../styles/feed.css";
 
 const FEATURE_TOGGLES: Record<FeedSort, string[]> = {
-  latest: ["SSR", "React Query", "离线中心化", "分片增量发布"],
-  trending: ["Redis Cache", "Signals", "热度因子", "聚类曝光"],
-  recommended: ["ranking_config", "AI Mix", "召回埋点", "多臂老虎机"],
+  latest: ["刚刚发布", "作者亲述", "即时问答", "现场图集"],
+  trending: ["全网热议", "精选长文", "视频回顾", "人气合辑"],
+  recommended: ["你关注的主题", "常看的作者", "为你精选", "社区口碑"],
 };
 
 const NAV_LINKS = [
@@ -19,30 +19,30 @@ const NAV_LINKS = [
 ];
 
 const HERO_METRICS = [
-  { label: "今日成功率", value: "99.1%", helper: "较昨日 +0.4%" },
-  { label: "平均刷新", value: "210ms", helper: "P95 稳定" },
-  { label: "缓存命中", value: "87%", helper: "Redis" },
-  { label: "活跃实验", value: "6", helper: "3 控制 + 3 试验" },
+  { label: "今日新增分享", value: "428", helper: "社区高活跃" },
+  { label: "与你相关", value: "36", helper: "兴趣优先" },
+  { label: "互动提醒", value: "12", helper: "朋友在讨论" },
+  { label: "未读消息", value: "5", helper: "保持关注" },
 ];
 
 const INSIGHTS = [
   {
-    title: "推荐池热度",
-    value: "132",
-    trend: "+12%",
-    description: "AI 混排请求数 / 分钟",
+    title: "热门话题",
+    value: "旅行季",
+    trend: "7.4万参与",
+    description: "晒出你的春季出行灵感",
   },
   {
-    title: "排序回滚",
-    value: "0",
-    trend: "正常",
-    description: "近 24 小时无回滚",
+    title: "作者推荐",
+    value: "小宇宙",
+    trend: "新作品 3 篇",
+    description: "关注作者更新不错过",
   },
   {
-    title: "手动干预",
-    value: "4",
-    trend: "两次置顶",
-    description: "运营介入次数",
+    title: "活动预告",
+    value: "创作马拉松",
+    trend: "报名倒计时 2 天",
+    description: "完成任务赢限定徽章",
   },
 ];
 
@@ -50,6 +50,35 @@ export default function FeedPage() {
   const [sort, setSort] = useState<FeedSort>("recommended");
   const { data, isFetching, refetch } = useFeed(sort);
   const items = data ?? [];
+  const [isComposerOpen, setIsComposerOpen] = useState(false);
+  const [composerTitle, setComposerTitle] = useState("");
+  const [composerTopic, setComposerTopic] = useState("");
+  const [composerBody, setComposerBody] = useState("");
+  const [composerMedia, setComposerMedia] = useState("");
+  const [composerMessage, setComposerMessage] = useState<string | null>(null);
+
+  const openComposer = () => {
+    setIsComposerOpen(true);
+    setComposerMessage(null);
+  };
+
+  const closeComposer = () => {
+    setIsComposerOpen(false);
+    setComposerTitle("");
+    setComposerTopic("");
+    setComposerBody("");
+    setComposerMedia("");
+  };
+
+  const handlePublish = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!composerTitle.trim() || !composerBody.trim()) {
+      setComposerMessage("请填写标题和内容");
+      return;
+    }
+    setComposerMessage(`《${composerTitle.trim()}》已保存至草稿，可继续在桌面端完善。`);
+    closeComposer();
+  };
 
   return (
     <main className="feed">
@@ -58,7 +87,7 @@ export default function FeedPage() {
           <span className="badge">Share Feed</span>
           <div>
             <h1>创作者动态</h1>
-            <p>实时掌握排序策略、缓存层以及实验对体验的影响。</p>
+            <p>发现你关注的作者、话题与活动，及时掌握社区新鲜事。</p>
           </div>
         </div>
         <ul className="feed-nav-links">
@@ -71,17 +100,20 @@ export default function FeedPage() {
           ))}
         </ul>
         <div className="feed-nav-actions">
-          <button className="ghost">产品手册</button>
-          <button className="primary">创建分享</button>
+          <button className="ghost">浏览专题</button>
+          <button type="button" className="primary" onClick={openComposer}>
+            发布内容
+          </button>
         </div>
       </nav>
+      {composerMessage && <p className="feed-compose-feedback">{composerMessage}</p>}
 
       <section id="overview" className="feed-hero">
         <div>
-          <p className="eyebrow">Feed 实验 · P95 目标 300ms</p>
-          <h2>在成员察觉前先捕捉性能回归</h2>
+          <p className="eyebrow">Share Feed · 今日亮点</p>
+          <h2>好内容在此集合，灵感随时刷新</h2>
           <p className="muted">
-            持续关注排序实验、缓存命中率与刷新频次，快速定位异常波动。
+            根据你的关注、收藏和浏览记录，为你聚合值得一看的创作和讨论。
           </p>
         </div>
         <div className="feed-hero-actions">
@@ -112,10 +144,10 @@ export default function FeedPage() {
 
       <section id="feature-toggles" className="feed-feature-panel">
         <div className="feed-feature-copy">
-          <h3>当前排序实验</h3>
-          <p>切换排序查看特征组合，需要时即时刷新缓存。</p>
+          <h3>内容偏好</h3>
+          <p>切换排序，探索热门或最新内容，也可以刷新以获取更多灵感。</p>
           <button onClick={() => refetch()} disabled={isFetching}>
-            {isFetching ? "刷新中..." : "立即刷新"}
+            {isFetching ? "加载中..." : "刷新推荐"}
           </button>
         </div>
         <ul className="feed-feature-list">
@@ -131,6 +163,65 @@ export default function FeedPage() {
           <FeedList items={items} sort={sort} isLoading={isFetching} />
         </div>
       </section>
+
+      {isComposerOpen && (
+        <div className="feed-modal" role="dialog" aria-modal="true" aria-labelledby="composer-title">
+          <form className="feed-modal-content feed-compose" onSubmit={handlePublish}>
+            <button type="button" className="feed-modal-close" onClick={closeComposer} aria-label="关闭发布器">
+              ×
+            </button>
+            <p className="feed-modal-topic">发布内容</p>
+            <h2 id="composer-title">创建新的分享</h2>
+            <label>
+              主题
+              <input
+                type="text"
+                value={composerTopic}
+                onChange={(event) => setComposerTopic(event.target.value)}
+                placeholder="例如：城市漫游、旅行季"
+              />
+            </label>
+            <label>
+              标题
+              <input
+                type="text"
+                value={composerTitle}
+                onChange={(event) => setComposerTitle(event.target.value)}
+                required
+                placeholder="为你的内容起一个吸引人的标题"
+              />
+            </label>
+            <label>
+              正文
+              <textarea
+                value={composerBody}
+                onChange={(event) => setComposerBody(event.target.value)}
+                rows={5}
+                required
+                placeholder="写下分享的灵感、故事或教程"
+              />
+            </label>
+            <label>
+              媒体链接（选填）
+              <input
+                type="url"
+                value={composerMedia}
+                onChange={(event) => setComposerMedia(event.target.value)}
+                placeholder="粘贴图片/视频/音频链接"
+              />
+            </label>
+            <small>内容会先保存为草稿，稍后可在桌面端继续编辑后发布。</small>
+            <div className="feed-compose-actions">
+              <button type="button" onClick={closeComposer}>
+                取消
+              </button>
+              <button type="submit" className="primary">
+                保存草稿
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </main>
   );
 }
