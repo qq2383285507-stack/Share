@@ -6,7 +6,7 @@ import { clsx } from "clsx";
 const tabs: { label: string; value: FeedSort; description: string }[] = [
   { label: "最新", value: "latest", description: "过去 20 分钟实时" },
   { label: "热度", value: "trending", description: "7 天互动量排序" },
-  { label: "推荐", value: "recommended", description: "ranking_config 配置" },
+  { label: "推荐", value: "recommended", description: "推荐配置" },
 ];
 
 export function FeedTabs({

@@ -342,7 +342,7 @@
 
 .feed-feature-list li {
   padding: 0.4rem 1rem;
-  border-radius: 999px;
+  border-radius: 30px;
   background: rgba(255, 255, 255, 0.12);
 }
 
@@ -382,13 +382,34 @@
 }
 
 .feed-modal-content {
+  margin: 0.5rem;
   max-width: 560px;
   width: min(560px, 100%);
+  height: 80vh;
+  max-height: 80vh;
+  overflow-y: auto;
   background: #fff;
-  border-radius: 1.5rem;
+  border-radius: 10px;
   padding: 2rem;
   position: relative;
   box-shadow: 0 30px 70px rgba(15, 23, 42, 0.2);
+}
+
+.feed-modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.feed-modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.feed-modal-content::-webkit-scrollbar-thumb {
+  background: #cbd5f5;
+  border-radius: 999px;
+}
+
+.feed-modal-content::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 .feed-modal-close {
@@ -431,17 +452,34 @@
   padding: 0.75rem;
 }
 
-.feed-modal-media img,
-.feed-modal-media video {
+.feed-media-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.feed-media-trigger {
+  border: none;
+  padding: 0;
+  background: none;
+  width: 100%;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.feed-media-trigger img {
+  width: 100%;
+  display: block;
+}
+
+.feed-media-card video,
+.feed-media-card audio {
   width: 100%;
   border-radius: 0.75rem;
 }
 
-.feed-modal-media audio {
-  width: 100%;
-}
-
-.feed-modal-media figcaption {
+.feed-media-card figcaption {
   margin-top: 0.35rem;
   font-size: 0.85rem;
   color: #475569;
@@ -533,6 +571,40 @@
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.feed-media-viewer {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  z-index: 1100;
+}
+
+.feed-media-viewer-content {
+  background: #fff;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  max-width: 720px;
+  width: min(720px, 100%);
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 70px rgba(15, 23, 42, 0.35);
+}
+
+.feed-media-viewer-content img,
+.feed-media-viewer-content video,
+.feed-media-viewer-content audio {
+  width: 100%;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.feed-media-viewer-content p {
+  color: #475569;
 }
 
 .feed-compose-feedback {

@@ -67,6 +67,7 @@ export function FeedList({
   const [replyTarget, setReplyTarget] = useState<string | null>(null);
   const [isFollowing, setIsFollowing] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [focusedMedia, setFocusedMedia] = useState<MediaItem | null>(null);
 
   useEffect(() => {
     if (!activeItem) {
@@ -94,7 +95,11 @@ export function FeedList({
   const closeDetail = () => {
     setActiveItem(null);
     setReplyTarget(null);
+    setFocusedMedia(null);
   };
+
+  const openMedia = (media: MediaItem) => setFocusedMedia(media);
+  const closeMediaViewer = () => setFocusedMedia(null);
 
   const handleSubmitComment = () => {
     if (!activeItem || !commentDraft.trim()) return;
@@ -220,27 +225,42 @@ export function FeedList({
                 {activeItem.details.media.map((media) => {
                   if (media.type === "image") {
                     return (
-                      <figure key={media.id}>
-                        <img src={media.src} alt={media.caption ?? media.id} />
+                      <figure key={media.id} className="feed-media-card">
+                        <button
+                          type="button"
+                          className="feed-media-trigger"
+                          onClick={() => openMedia(media)}
+                          aria-label="放大查看图片"
+                        >
+                          <img src={media.src} alt={media.caption ?? media.id} />
+                        </button>
                         {media.caption && <figcaption>{media.caption}</figcaption>}
                       </figure>
                     );
                   }
                   if (media.type === "video") {
                     return (
-                      <figure key={media.id}>
-                        <video
-                          src={media.src}
-                          poster={media.cover}
-                          controls
-                        />
+                      <figure key={media.id} className="feed-media-card video">
+                        <button
+                          type="button"
+                          className="feed-media-trigger"
+                          onClick={() => openMedia(media)}
+                          aria-label="沉浸播放视频"
+                        >
+                          <video
+                            src={media.src}
+                            poster={media.cover}
+                            controls
+                            preload="metadata"
+                          />
+                        </button>
                         {media.caption && <figcaption>{media.caption}</figcaption>}
                       </figure>
                     );
                   }
                   return (
-                    <figure key={media.id}>
-                      <audio src={media.src} controls />
+                    <figure key={media.id} className="feed-media-card audio">
+                      <audio src={media.src} controls preload="none" />
                       {media.caption && <figcaption>{media.caption}</figcaption>}
                     </figure>
                   );
@@ -372,6 +392,41 @@ export function FeedList({
             <button type="button" className="feed-modal-action" onClick={closeDetail}>
               返回列表
             </button>
+          </div>
+        </div>
+      )}
+
+      {focusedMedia && (
+        <div
+          className="feed-media-viewer"
+          role="dialog"
+          aria-modal="true"
+          aria-label="多媒体预览"
+        >
+          <div className="feed-media-viewer-content">
+            <button
+              type="button"
+              className="feed-modal-close"
+              onClick={closeMediaViewer}
+              aria-label="关闭多媒体预览"
+            >
+              ×
+            </button>
+            {focusedMedia.type === "image" && (
+              <img src={focusedMedia.src} alt={focusedMedia.caption ?? focusedMedia.id} />
+            )}
+            {focusedMedia.type === "video" && (
+              <video
+                src={focusedMedia.src}
+                poster={focusedMedia.cover}
+                controls
+                autoPlay
+              />
+            )}
+            {focusedMedia.type === "audio" && (
+              <audio src={focusedMedia.src} controls autoPlay />
+            )}
+            {focusedMedia.caption && <p>{focusedMedia.caption}</p>}
           </div>
         </div>
       )}

@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { FeedTabs } from "../../components/FeedTabs";
 import { FeedList } from "../../components/FeedList";
 import { FeedSort, useFeed } from "@dome/hooks/useFeed";
@@ -50,12 +50,19 @@ export default function FeedPage() {
   const [sort, setSort] = useState<FeedSort>("recommended");
   const { data, isFetching, refetch } = useFeed(sort);
   const items = data ?? [];
+  type FeedItemType = (typeof items)[number];
+  const [localLatest, setLocalLatest] = useState<FeedItemType[]>([]);
   const [isComposerOpen, setIsComposerOpen] = useState(false);
   const [composerTitle, setComposerTitle] = useState("");
   const [composerTopic, setComposerTopic] = useState("");
   const [composerBody, setComposerBody] = useState("");
   const [composerMedia, setComposerMedia] = useState("");
   const [composerMessage, setComposerMessage] = useState<string | null>(null);
+  useEffect(() => {
+    if (!composerMessage) return;
+    const timer = setTimeout(() => setComposerMessage(null), 4000);
+    return () => clearTimeout(timer);
+  }, [composerMessage]);
 
   const openComposer = () => {
     setIsComposerOpen(true);
@@ -70,15 +77,58 @@ export default function FeedPage() {
     setComposerMedia("");
   };
 
+  const guessMediaType = (url: string): "image" | "video" | "audio" => {
+    const lower = url.toLowerCase();
+    if (/(mp4|mov|webm)$/.test(lower)) return "video";
+    if (/(mp3|wav|aac)$/.test(lower)) return "audio";
+    return "image";
+  };
+
   const handlePublish = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!composerTitle.trim() || !composerBody.trim()) {
       setComposerMessage("请填写标题和内容");
       return;
     }
-    setComposerMessage(`《${composerTitle.trim()}》已保存至草稿，可继续在桌面端完善。`);
+    const topic = composerTopic.trim() || "即时分享";
+    const body = composerBody.trim();
+    const mediaLink = composerMedia.trim();
+    const newItem: FeedItemType = {
+      id: `local-${Date.now()}`,
+      title: composerTitle.trim(),
+      summary: body.length > 80 ? `${body.slice(0, 80)}…` : body,
+      topic,
+      tags: topic ? [topic] : [],
+      author: "我",
+      authorMeta: { isFollowing: true, isBookmarked: true },
+      publishedAt: new Date().toISOString(),
+      engagement: { views: 0, bookmarks: 0, rating: 5 },
+      details: {
+        body,
+        media: mediaLink
+          ? [
+              {
+                id: `media-${Date.now()}`,
+                type: guessMediaType(mediaLink),
+                src: mediaLink,
+                caption: topic,
+              },
+            ]
+          : [],
+      },
+      comments: [],
+    };
+    setLocalLatest((prev) => [newItem, ...prev]);
+    setComposerMessage(`《${composerTitle.trim()}》已发布，可在最新列表查看。`);
     closeComposer();
   };
+
+  const displayedItems = useMemo(() => {
+    if (sort === "latest") {
+      return [...localLatest, ...items];
+    }
+    return items;
+  }, [items, localLatest, sort]);
 
   return (
     <main className="feed">
@@ -160,7 +210,7 @@ export default function FeedPage() {
       <section id="feed-panels" className="feed-panels">
         <FeedTabs active={sort} onChange={setSort} isLoading={isFetching} />
         <div id={`panel-${sort}`} role="tabpanel">
-          <FeedList items={items} sort={sort} isLoading={isFetching} />
+          <FeedList items={displayedItems} sort={sort} isLoading={isFetching} />
         </div>
       </section>
 

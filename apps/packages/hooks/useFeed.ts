@@ -115,13 +115,13 @@ const mockFeedItems: Record<FeedSort, z.infer<typeof feedItemSchema>[]> = {
           {
             id: "media-ax-1",
             type: "image",
-            src: "https://placehold.co/620x360",
+            src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
             caption: "书店门口的绿植",
           },
           {
             id: "media-ax-2",
             type: "audio",
-            src: "https://filesampleshub.com/download/audio/mp3/sample-3.mp3",
+            src: "https://samplelib.com/lib/preview/mp3/sample-6s.mp3",
             caption: "与店主的聊天",
           },
         ],
@@ -159,16 +159,22 @@ const mockFeedItems: Record<FeedSort, z.infer<typeof feedItemSchema>[]> = {
       },
       publishedAt: new Date().toISOString(),
       engagement: { views: 980, bookmarks: 103, rating: 4.4 },
-      details: {
-        body: "把音乐、香气和五分钟伸展纳入通勤，心情也会跟着放松。文中附赠可下载的播放列表。",
-        media: [
-          {
-            id: "media-zm-1",
-            type: "audio",
-            src: "https://filesampleshub.com/download/audio/mp3/sample-6.mp3",
-            caption: "早安播客片段",
-          },
-        ],
+        details: {
+          body: "把音乐、香气和五分钟伸展纳入通勤，心情也会跟着放松。文中附赠可下载的播放列表。",
+          media: [
+            {
+              id: "media-zm-img",
+              type: "image",
+              src: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
+              caption: "通勤路上的清晨",
+            },
+            {
+              id: "media-zm-1",
+              type: "audio",
+              src: "https://samplelib.com/lib/preview/mp3/sample-12s.mp3",
+              caption: "早安播客片段",
+            },
+          ],
       },
       comments: [],
     },
@@ -192,14 +198,14 @@ const mockFeedItems: Record<FeedSort, z.infer<typeof feedItemSchema>[]> = {
           {
             id: "media-lk-1",
             type: "image",
-            src: "https://placehold.co/640x360?text=Reflection",
+            src: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80",
             caption: "街头倒影",
           },
           {
             id: "media-lk-2",
             type: "video",
-            src: "https://filesampleshub.com/download/video/mp4/sample-5.mp4",
-            cover: "https://placehold.co/640x360?text=Video",
+            src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+            cover: "https://images.unsplash.com/photo-1495653797063-114787b77b23?auto=format&fit=crop&w=1200&q=80",
             caption: "拍摄过程",
           },
         ],
@@ -228,7 +234,7 @@ const mockFeedItems: Record<FeedSort, z.infer<typeof feedItemSchema>[]> = {
           {
             id: "media-mn-1",
             type: "image",
-            src: "https://placehold.co/620x360?text=CD",
+            src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80",
             caption: "春日街景",
           },
         ],
@@ -255,7 +261,7 @@ const mockFeedItems: Record<FeedSort, z.infer<typeof feedItemSchema>[]> = {
           {
             id: "media-lo-1",
             type: "image",
-            src: "https://placehold.co/640x360?text=Desk",
+            src: "https://images.unsplash.com/photo-1493666438817-866a91353ca9?auto=format&fit=crop&w=1200&q=80",
             caption: "极简桌面",
           },
         ],
@@ -280,9 +286,15 @@ const mockFeedItems: Record<FeedSort, z.infer<typeof feedItemSchema>[]> = {
         body: "春日限定的独立音乐清单，提供双平台链接。",
         media: [
           {
+            id: "media-ec-img",
+            type: "image",
+            src: "https://images.unsplash.com/photo-1487215078519-e21cc028cb29?auto=format&fit=crop&w=1200&q=80",
+            caption: "社区 DJ 的录音棚",
+          },
+          {
             id: "media-ec-1",
             type: "audio",
-            src: "https://filesampleshub.com/download/audio/mp3/sample-9.mp3",
+            src: "https://samplelib.com/lib/preview/mp3/sample-9s.mp3",
             caption: "清单试听",
           },
         ],
@@ -311,7 +323,7 @@ const mockFeedItems: Record<FeedSort, z.infer<typeof feedItemSchema>[]> = {
           {
             id: "media-xy-1",
             type: "image",
-            src: "https://placehold.co/640x360?text=Sketch",
+            src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80",
             caption: "起稿阶段",
           },
         ],
@@ -338,8 +350,8 @@ const mockFeedItems: Record<FeedSort, z.infer<typeof feedItemSchema>[]> = {
           {
             id: "media-ms-1",
             type: "video",
-            src: "https://filesampleshub.com/download/video/mp4/sample-2.mp4",
-            cover: "https://placehold.co/640x360?text=DIY",
+            src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/bee.mp4",
+            cover: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
             caption: "制作过程",
           },
         ],
@@ -362,7 +374,14 @@ const mockFeedItems: Record<FeedSort, z.infer<typeof feedItemSchema>[]> = {
       engagement: { views: 2980, bookmarks: 640, rating: 4.7 },
       details: {
         body: "入门 AI 绘画的关键提示词与练习方法，附工具链接。",
-        media: [],
+        media: [
+          {
+            id: "media-sm-1",
+            type: "image",
+            src: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=80",
+            caption: "AI 绘画草图",
+          },
+        ],
       },
       comments: [],
     },
