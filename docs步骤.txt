@@ -2,9 +2,7 @@ Share 是一款面向自我驱动学习者的跨端分享平台，用户可以�
 
 
 /analyst 分析师 -------*workflow-init启动新的顺序化工作流路径--------*brainstorm-project引导完成头脑风暴-------帮我生成简报
-/pm 产品经理 ---基于简报=>PRD和Epic
-/architect 架构师 ---基于PRD和Epic=>系统架构文档
-/sm Scrum Master 角色 ---基于PRD和Epic=>待开发的用户故事
-/dev 开发者 ---待开发的用户故事=>编码实现
-/sm  创建下一个故事
-/dev 实现故事
+/pm 产品经理 ---基于简报生成PRD和Epic
+/architect 架构师 ---基于PRD和Epic生成系统架构文档
+/sm Scrum Master 角色 ---基于PRD和Epic生成待开发的用户故事
+/dev 开发者 ---基于待开发的用户故事生成编码实现
