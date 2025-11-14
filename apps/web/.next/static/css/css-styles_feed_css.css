@@ -117,6 +117,7 @@
   -webkit-backdrop-filter: blur(12px);
           backdrop-filter: blur(12px);
   margin-bottom: 2rem;
+  z-index: 99999;
 }
 
 .feed-nav-brand {
@@ -378,7 +379,7 @@
 
 .feed-feature-list li {
   padding: 0.4rem 1rem;
-  border-radius: 30px;
+  border-radius: 999px;
   background: rgba(255, 255, 255, 0.12);
 }
 
@@ -425,7 +426,7 @@
   max-height: 80vh;
   overflow-y: auto;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 1.5rem;
   padding: 2rem;
   position: relative;
   box-shadow: 0 30px 70px rgba(15, 23, 42, 0.2);
