@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<story-context>
+  <story>
+    <key>1-2-search-filtering</key>
+    <title>搜索与筛选体验</title>
+    <status>drafted</status>
+    <as_a>自我驱动型学习者</as_a>
+    <i_want>通过搜索与筛选快速定位匹配的学习内容</i_want>
+    <so_that>我能在特定主题/时长/难度范围内找到可复用的资料</so_that>
+  </story>
+  <acceptance_criteria>
+    <criterion id="AC1">搜索框支持模糊匹配，≥2 字符 300ms debounce，调用 `/api/v1/search?q=`。</criterion>
+    <criterion id="AC2">筛选面板提供标签、主题、学习时长、难度等多选项，生成查询参数并可清除，Web/移动端可达。</criterion>
+    <criterion id="AC3">空态展示提示与“清除筛选”；若后端返回 `suggestions`，显示最多 5 条。</criterion>
+    <criterion id="AC4">所有筛选条件写入 URL（Web）或路由状态（移动端），重新打开时恢复。</criterion>
+    <criterion id="AC5">搜索/筛选请求上报 `content.search` 事件至 `/api/v1/events`，包含筛选项，失败重试两次。</criterion>
+    <criterion id="AC6">搜索 API P95 <2s，Redis 缓存命中 <500ms，前端骨架屏 ≤800ms。</criterion>
+  </acceptance_criteria>
+  <tasks>
+    <task>前端 Web：搜索框、筛选 Drawer、URL 同步</task>
+    <task>移动端：Search Screen + 持久化状态</task>
+    <task>Hooks：`packages/hooks/search.ts` 封装 `useSearchFeed`</task>
+    <task>BFF：`services/bff-api/src/modules/search` + Redis 缓存 + 事件上报</task>
+    <task>数据：Trigram/FTS 索引、UNACCENT、search_cache 结构</task>
+    <task>测试：API 集成、E2E、性能监控</task>
+  </tasks>
+  <artifacts>
+    <documents>
+      <doc path="docs/PRD.md#MVP-Scope" />
+      <doc path="docs/PRD.md#Functional-Requirements" />
+      <doc path="docs/architecture.md#Technology-Stack-Details" />
+      <doc path="docs/architecture.md#API-Contracts" />
+      <doc path="docs/architecture.md#Performance-Considerations" />
+    </documents>
+    <code>
+      <path>apps/web/app/(feed)/search</path>
+      <path>apps/mobile/src/screens/Search</path>
+      <path>packages/hooks/search.ts</path>
+      <path>services/bff-api/src/modules/search</path>
+      <path>services/bff-api/prisma/schema.prisma</path>
+    </code>
+  </artifacts>
+  <constraints>
+    <constraint>遵循 Next.js + Expo 共享组件模式、可访问性标准。</constraint>
+    <constraint>URL/路由状态需持久化筛选，支持刷新恢复。</constraint>
+    <constraint>搜索 API 复用 Postgres FTS + Trigram + 标签过滤，缓存 60s。</constraint>
+  </constraints>
+  <dependencies>
+    <dependency>Next.js 14 / React Query</dependency>
+    <dependency>Expo / React Native</dependency>
+    <dependency>NestJS + Prisma + PostgreSQL + Trigram</dependency>
+    <dependency>Redis（缓存 + 事件）</dependency>
+  </dependencies>
+  <tests>
+    <standards>保持与 Story 1.1 一致的 Playwright / Jest 标准，增加搜索性能与空态测试。</standards>
+    <locations>apps/web/tests, apps/mobile/tests, services/bff-api/test</locations>
+    <ideas>
+      <idea ac="AC2">多筛选组合并断言查询参数 / 状态恢复。</idea>
+      <idea ac="AC3">模拟 suggestions 返回并渲染空态列表。</idea>
+      <idea ac="AC6">性能测试：高并发搜索 + Redis 缓存命中情况。</idea>
+    </ideas>
+  </tests>
+</story-context>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<story-context>
+  <story>
+    <key>1-1-home-feed-sorting</key>
+    <title>实现首页多排序内容流</title>
+    <status>drafted</status>
+    <as_a>自我驱动型学习者</as_a>
+    <i_want>在首页按“最新 / 最热 / 个性化推荐”切换内容流</i_want>
+    <so_that>我可以用最少点击找到可信赖的学习资料</so_that>
+  </story>
+  <acceptance_criteria>
+    <criterion id="AC1">首页提供“最新 / 最热 / 推荐”三个排序标签，切换 300ms 内更新 UI，同时调用对应排序接口。</criterion>
+    <criterion id="AC2">最新排序按发布时间倒序返回 20 条内容卡片，显示标题、摘要、标签、质量、点击、收藏。</criterion>
+    <criterion id="AC3">最热排序基于 7 天内点击+收藏得分、Redis 聚合；缓存 60s，失效时回退数据库视图。</criterion>
+    <criterion id="AC4">推荐排序使用 `ranking_config` 权重（质量0.5/点击0.3/收藏0.2），1 分钟内响应配置更新。</criterion>
+    <criterion id="AC5">排序请求上报 `content.viewed`、收藏操作事件至 `/api/v1/events`，失败重试 2 次并 Toast 提示。</criterion>
+    <criterion id="AC6">SSR + WCAG 2.1 可访问性，P95 响应 <2s，骨架屏 ≤800ms。</criterion>
+  </acceptance_criteria>
+  <tasks>
+    <task>前端：实现排序 Tab + 数据层（apps/web/app/(feed)）</task>
+    <task>移动端：同步排序体验（apps/mobile/src/screens/Home）</task>
+    <task>BFF：实现 `/api/v1/feeds` 与 `/api/v1/events`，集成 Redis + Postgres</task>
+    <task>Worker：聚合排序信号，写入 `content_rankings`</task>
+    <task>数据迁移：`content_rankings`、`ranking_config`，索引</task>
+    <task>质量保障：API 集成、前端 E2E、性能监控</task>
+  </tasks>
+  <artifacts>
+    <documents>
+      <doc path="docs/PRD.md#MVP-Scope" />
+      <doc path="docs/PRD.md#Functional-Requirements" />
+      <doc path="docs/architecture.md#Decision-Summary" />
+      <doc path="docs/architecture.md#Novel-Pattern-Designs" />
+      <doc path="docs/architecture.md#API-Contracts" />
+      <doc path="docs/architecture.md#Performance-Considerations" />
+    </documents>
+    <code>
+      <path>apps/web/app/(feed)</path>
+      <path>apps/mobile/src/screens/Home</path>
+      <path>packages/hooks</path>
+      <path>services/bff-api/src/modules/feed</path>
+      <path>services/workers/src/jobs</path>
+      <path>services/bff-api/prisma/schema.prisma</path>
+    </code>
+  </artifacts>
+  <constraints>
+    <constraint>遵循 Next.js + React Query + Expo 共享组件模式，SSR/ISR。</constraint>
+    <constraint>排序信号流水线：前端事件 -> Redis Stream -> Worker -> Postgres。</constraint>
+    <constraint>API 命名和响应格式需符合 architecture 决策。</constraint>
+    <constraint>性能：P95 <2s，Redis 缓存 60s，骨架屏 ≤800ms。</constraint>
+  </constraints>
+  <dependencies>
+    <dependency>Next.js 14 + React Query</dependency>
+    <dependency>Expo / React Native</dependency>
+    <dependency>NestJS + Prisma + PostgreSQL</dependency>
+    <dependency>Redis + BullMQ</dependency>
+    <dependency>S3/Cloudinary（静态资源）</dependency>
+  </dependencies>
+  <tests>
+    <standards>前端使用 Playwright E2E，后端使用 Jest/Integration Tests；遵循文档中的性能与可访问性标准。</standards>
+    <locations>apps/web/tests, apps/mobile/tests, services/bff-api/test, services/workers/test</locations>
+    <ideas>
+      <idea ac="AC1">验证排序 Tab 点击切换与 API 参数。</idea>
+      <idea ac="AC3">模拟 Redis 缓存命中/失效，确保回退逻辑。</idea>
+      <idea ac="AC5">模拟事件上报失败并观察重试+Toast。</idea>
+    </ideas>
+  </tests>
+</story-context>

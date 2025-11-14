@@ -1,0 +1,1 @@
+{"name":"mobile","private":true,"version":"0.1.0","main":"app/index.tsx","scripts":{"start":"expo start","android":"expo start --android","ios":"expo start --ios"},"dependencies":{"expo":"50.0.0","react":"18.2.0","react-native":"0.73.0","@tanstack/react-query":"5.17.0"}}

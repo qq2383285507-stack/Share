@@ -1,0 +1,381 @@
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../node_modules/.pnpm/next@14.2.0_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!../node_modules/.pnpm/next@14.2.0_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./components/toast.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.toast-stack { position: fixed; top: 1rem; right: 1rem; display: flex; flex-direction: column; gap: 0.5rem; z-index: 1000; } .toast { padding: 0.75rem 1rem; border-radius: 0.5rem; color: white; font-weight: 600; box-shadow: 0 8px 20px rgba(0,0,0,0.15); } .toast-success { background-color: #0f9d58; } .toast-info { background-color: #2962ff; } .toast-error { background-color: #c62828; }
+
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../node_modules/.pnpm/next@14.2.0_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!../node_modules/.pnpm/next@14.2.0_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./styles/feed.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.feed {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.feed-tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-gap: 1rem;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.feed-tab {
+  border-radius: 1rem;
+  border: 1px solid #dfe3ea;
+  padding: 1rem;
+  background: #fff;
+  text-align: left;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.feed-tab-active {
+  border-color: #2563eb;
+  background: #eef2ff;
+}
+
+.feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feed-card {
+  border-radius: 1rem;
+  background: #fff;
+  padding: 1.5rem;
+  border: 1px solid #eef;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.feed-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.feed-card-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.75rem 0;
+}
+
+.feed-card-tag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: #f1f5f9;
+  font-size: 0.85rem;
+  color: #0f172a;
+}
+
+.feed-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feed-card-metrics {
+  display: flex;
+  gap: 1.5rem;
+  color: #475569;
+  font-size: 0.9rem;
+}
+
+.feed-card button {
+  border: none;
+  background: #2563eb;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.feed-nav {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem 1.75rem;
+  border-radius: 1.5rem;
+  border: 1px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 15px 45px rgba(15, 23, 42, 0.08);
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+  margin-bottom: 2rem;
+}
+
+.feed-nav-brand {
+  flex: 1 1;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.feed-nav-brand h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  background: #2563eb;
+  color: #fff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.feed-nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.feed-nav-link {
+  text-decoration: none;
+  color: #0f172a;
+  font-weight: 500;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  display: inline-flex;
+  transition: background 0.2s, color 0.2s;
+}
+
+.feed-nav-link:hover {
+  background: #eef2ff;
+  color: #2563eb;
+}
+
+.feed-nav-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.feed-nav-actions button {
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.feed-nav-actions .ghost {
+  background: #eef2ff;
+  color: #2563eb;
+}
+
+.feed-nav-actions .primary {
+  background: #0f172a;
+  color: #fff;
+}
+
+.feed-hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, #eef2ff, #fff);
+  margin-bottom: 2rem;
+  border: 1px solid #e2e8f0;
+}
+
+.feed-hero h2 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 1.85rem;
+  color: #0f172a;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  color: #475569;
+}
+
+.muted {
+  color: #475569;
+  max-width: 520px;
+}
+
+.feed-hero-actions {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.feed-hero-actions div {
+  background: #fff;
+  padding: 1rem 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  min-width: 140px;
+}
+
+.feed-hero-actions span {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.feed-hero-actions strong {
+  display: block;
+  font-size: 1.5rem;
+  color: #0f172a;
+}
+
+.feed-hero-actions small {
+  color: #0f172a;
+  font-weight: 600;
+  display: block;
+}
+
+.feed-insights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-gap: 1rem;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.feed-insights article {
+  padding: 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.insight-title {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.insight-description {
+  margin: 0.35rem 0 0;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.insight-metric {
+  text-align: right;
+}
+
+.insight-metric strong {
+  font-size: 2rem;
+  color: #0f172a;
+  line-height: 1;
+}
+
+.insight-metric span {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.feed-feature-panel {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.feed-feature-copy {
+  flex: 1 1;
+  min-width: 240px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+.feed-feature-copy button {
+  align-self: flex-start;
+  border: none;
+  background: #2563eb;
+  color: #fff;
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.feed-feature-list {
+  flex: 2 1;
+  min-width: 320px;
+  list-style: none;
+  margin: 0;
+  padding: 1.5rem;
+  border-radius: 1.25rem;
+  background: #0f172a;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  color: #fff;
+}
+
+.feed-feature-list li {
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.feed-panels {
+  border-radius: 1.5rem;
+  border: 1px solid #e2e8f0;
+  padding: 1.5rem;
+  background: #fff;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05);
+}
+
+.skeleton {
+  animation: pulse 1.4s ease-in-out infinite;
+  background: linear-gradient(90deg, #f8fafc, #e2e8f0, #f8fafc);
+  height: 120px;
+  border-radius: 1rem;
+}
+
+@keyframes pulse {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 200%;
+  }
+}
+
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../node_modules/.pnpm/next@14.2.0_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!../node_modules/.pnpm/next@14.2.0_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./styles/globals.css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+:root {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: #111;
+  background-color: #f6f7f9;
+}
+
+body {
+  margin: 0;
+  background-color: #f6f7f9;
+}
+
